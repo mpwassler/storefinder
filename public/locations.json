@@ -1,7 +1,644 @@
 [
-	{ "title": "yo", "lat": "-84.512552", "lng": "39.101698"  },
-	{ "title": "yo", "lat": "-84.512553", "lng": "39.101697"  },
-	{ "title": "yo", "lat": "-84.512554", "lng": "39.101696"  },
-	{ "title": "yo", "lat": "-84.512555", "lng": "39.101695"  },
-	{ "title": "yo", "lat": "-84.512556", "lng": "39.101694"  }
+  {
+    "title": "The Hands that Built Our City",
+    "address": "525 Elm Street, Cincinnati, OH 45202",
+    "lat": 39.1011667,
+    "lng": -84.5179805
+  },
+  {
+    "title": "Martha, the Last Passenger Pigeon",
+    "address": "15 E. Eighth St, Cincinnati, OH 45202",
+    "lat": 39.104327,
+    "lng": -84.5131029
+  },
+  {
+    "title": "Energy and Grace",
+    "address": "16 E. 12th Street, Cincinnati, OH 45202",
+    "lat": 39.1085197,
+    "lng": -84.5141511
+  },
+  {
+    "title": "Guardians of the City",
+    "address": "1011 W. 8th Street, Cincinnati, OH 45203",
+    "lat": 39.1033206,
+    "lng": -84.5334785
+  },
+  {
+    "title": "Pendleton Mapped",
+    "address": "1321 Pendleton Street, Cincinnati, OH 45202",
+    "lat": 39.111132,
+    "lng": -84.507391
+  },
+  {
+    "title": "Kentucky Natural History",
+    "address": "24 E. 5th Street, Covington, KY 41011",
+    "lat": 39.0863902,
+    "lng": -84.5096608
+  },
+  {
+    "title": "Ode to North Avondale",
+    "address": "3916 Reading Road, Cincinnati, OH 45229",
+    "lat": 39.155659,
+    "lng": -84.4801279
+  },
+  {
+    "title": "The Migration of Tradition",
+    "address": "1920 Race Street, Cincinnati, OH 45202",
+    "lat": 39.1173341,
+    "lng": -84.5182926
+  },
+  {
+    "title": "No Place Like Home",
+    "address": "27 W. 12th Street, Cincinnati, OH 45202",
+    "lat": 39.1079151,
+    "lng": -84.5156422
+  },
+  {
+    "title": "Licking River Greenway and Trails Murals",
+    "address": "Levassor and Eastern Avenue. Enter trail at southern end and walk North.",
+    "lat": 0,
+    "lng": 0
+  },
+  {
+    "title": "Homecoming (Blue Birds)",
+    "address": "119 East Court Street, Cincinnati, OH 45202",
+    "lat": 39.106312,
+    "lng": -84.5119411
+  },
+  {
+    "title": "Fresh Harvest",
+    "address": "1014 Vine Street, Cincinnati, OH 45202",
+    "lat": 39.1067628,
+    "lng": -84.5139541
+  },
+  {
+    "title": "The Wall of Education",
+    "address": "2651 Burnet Avenue,Cincinnati, OH 45219",
+    "lat": 39.1303834,
+    "lng": -84.5023182
+  },
+  {
+    "title": "Along the Hill",
+    "address": "4518 West Eighth Street, Cincinnati, OH 45238",
+    "lat": 39.1093315,
+    "lng": -84.599466
+  },
+  {
+    "title": "Oakley: Morning, Noon, and Night",
+    "address": "3142 Madison Road, Cincinnati, OH 45209",
+    "lat": 39.1540783,
+    "lng": -84.4290442
+  },
+  {
+    "title": "The Golden Muse",
+    "address": "28 West 13th Street Cincinnati, OH 45202",
+    "lat": 39.1094235,
+    "lng": -84.5163797
+  },
+  {
+    "title": "Garden Party at the Taft",
+    "address": "229 Fairfield Avenue, Bellevue, KY 41073",
+    "lat": 39.1055613,
+    "lng": -84.4844983
+  },
+  {
+    "title": "Covington Vision 2015 (Phase 1)",
+    "address": "Licking River Greenway & Trails, Covington, KY",
+    "lat": 39.062858,
+    "lng": -84.49794
+  },
+  {
+    "title": "The Village We Call Home",
+    "address": "10500 Reading Road, Cincinnati, OH 45241",
+    "lat": 39.2554598,
+    "lng": -84.4192122
+  },
+  {
+    "title": "The Roots of Vision",
+    "address": "1136 St. Gregory Street, Cincinnati, OH 45202",
+    "lat": 39.1087589,
+    "lng": -84.4974817
+  },
+  {
+    "title": "Philosopher’s Bone",
+    "address": "6701 Kellogg Road, Cincinnati, OH 45230",
+    "lat": 39.048212,
+    "lng": -84.397962
+  },
+  {
+    "title": "The Avondale Pride Mural",
+    "address": "3544 Reading Road, Cincinnati, OH 45229",
+    "lat": 39.1459008,
+    "lng": -84.4900509
+  },
+  {
+    "title": "The Cobbler’s Apprentice Plays Ball",
+    "address": "120 East Freedom Way, Cincinnati, OH 45202",
+    "lat": 39.0974035,
+    "lng": -84.5098842
+  },
+  {
+    "title": "A Perfect Day in College Hill",
+    "address": "6060 Hamilton Avenue, Cincinnati, OH 45224",
+    "lat": 39.201592,
+    "lng": -84.547332
+  },
+  {
+    "title": "Sunset Walk through Helentown",
+    "address": "315 E. 15th Street, Covington, KY 41011",
+    "lat": 39.0740508,
+    "lng": -84.5017628
+  },
+  {
+    "title": "Northern Kentucky Panorama",
+    "address": "717 Madison Avenue, Covington, KY 41011",
+    "lat": 39.0827294,
+    "lng": -84.5102328
+  },
+  {
+    "title": "Cincinnati’s Table",
+    "address": "713 Vine Street, Cincinnati, OH 45202",
+    "lat": 39.1041586,
+    "lng": -84.5139586
+  },
+  {
+    "title": "Hamilton Waterways, Past and Present",
+    "address": "24 S 2nd St Hamilton, OH 45011",
+    "lat": 39.3991649,
+    "lng": -84.5620319
+  },
+  {
+    "title": "A Tribute to Newport",
+    "address": "1032 Saratoga St, Newport, KY 41071",
+    "lat": 39.0868311,
+    "lng": -84.4873578
+  },
+  {
+    "title": "Main Street Collages",
+    "address": "Main St & E 13th St, Cincinnati, OH 45202",
+    "lat": 39.1099422,
+    "lng": -84.5118527
+  },
+  {
+    "title": "Learn, Play and Grow",
+    "address": "215 E 14th St, Cincinnati, OH 45202",
+    "lat": 39.111072,
+    "lng": -84.511585
+  },
+  {
+    "title": "The Winds of the Ridge",
+    "address": "6096 Montgomery Rd, Cincinnati, OH 45213",
+    "lat": 39.1818077,
+    "lng": -84.4277131
+  },
+  {
+    "title": "The Singing Mural",
+    "address": "1223 Central Pkwy, Cincinnati, OH 45214",
+    "lat": 39.1082149,
+    "lng": -84.5203337
+  },
+  {
+    "title": "The Divine Proportion of All Things",
+    "address": "714 Washington Ave, Covington, KY 41011",
+    "lat": 39.0826746,
+    "lng": -84.5112696
+  },
+  {
+    "title": "Riverside Rides",
+    "address": "2726 Riverside Dr, Cincinnati, OH 45202",
+    "lat": 39.1227765,
+    "lng": -84.4549443
+  },
+  {
+    "title": "Ice Cream Daydream",
+    "address": "33 East 12th Street, Cincinnati, OH 45202",
+    "lat": 39.1084009,
+    "lng": -84.5135164
+  },
+  {
+    "title": "All You Can Imagine Is Real",
+    "address": "1515 Carll St, Cincinnati, OH 45225",
+    "lat": 39.1343793,
+    "lng": -84.5466548
+  },
+  {
+    "title": "A Day in the Life of Sayler Park",
+    "address": "6356 Gracely Drive, Cincinnati, OH 45223",
+    "lat": 39.1075685,
+    "lng": -84.6878545
+  },
+  {
+    "title": "Westwood Story",
+    "address": "3077 Harrison Ave, Cincinnati, OH 45211",
+    "lat": 39.1501274,
+    "lng": -84.5999643
+  },
+  {
+    "title": "Willkommen to Clifton Heights",
+    "address": "2392 Wheeler St, Cincinnati, OH 45219",
+    "lat": 39.1275747,
+    "lng": -84.5201176
+  },
+  {
+    "title": "Bridging Tusculum",
+    "address": "400 Delta Ave, Cincinnati, OH 45226",
+    "lat": 39.1171794,
+    "lng": -84.4392162
+  },
+  {
+    "title": "An Epic of Time and Town",
+    "address": "411 W 6th St, Covington, KY 41011",
+    "lat": 39.0835336,
+    "lng": -84.5181551
+  },
+  {
+    "title": "What Are the Lyrics to Your Song?",
+    "address": "3564 Montgomery Rd, Cincinnati, OH 45207",
+    "lat": 39.1437856,
+    "lng": -84.470187
+  },
+  {
+    "title": "The Raymond Thunder-Sky Legacy Mural",
+    "address": "3841 Spring Grove Ave Cincinnati, Ohio",
+    "lat": 39.1567535,
+    "lng": -84.5410108
+  },
+  {
+    "title": "Daybreak in O’Bryonville",
+    "address": "2114 Madison Rd, Cincinnati, OH 45208",
+    "lat": 39.132852,
+    "lng": -84.4605967
+  },
+  {
+    "title": "Mr. Tarbell Tips His Hat",
+    "address": "1109 Vine Street, Cincinnati, OH 45202",
+    "lat": 39.1074825,
+    "lng": -84.5148401
+  },
+  {
+    "title": "The Vision of Samuel Hannaford",
+    "address": "1308 Race St, Cincinnati, OH 45202",
+    "lat": 39.1095885,
+    "lng": -84.5164907
+  },
+  {
+    "title": "Pride in the ‘Ville",
+    "address": "1733 Dirr Street, Cincinnati, OH",
+    "lat": 39.1543281,
+    "lng": -84.5450506
+  },
+  {
+    "title": "The Dreamers of Dreams",
+    "address": "718 State Ave, Cincinnati, OH 45204",
+    "lat": 39.1039332,
+    "lng": -84.5533768
+  },
+  {
+    "title": "Campy Washington",
+    "address": "3025 Colerain Ave, Cincinnati, OH 45225",
+    "lat": 39.1377812,
+    "lng": -84.5378435
+  },
+  {
+    "title": "A Postcard from Home",
+    "address": "7117 Vine St, Cincinnati, OH 45216",
+    "lat": 39.1951332,
+    "lng": -84.4793066
+  },
+  {
+    "title": "What’s Happening Downtown",
+    "address": "1005 Walnut St, Cincinnati, OH 45202",
+    "lat": 39.1068163,
+    "lng": -84.5130054
+  },
+  {
+    "title": "East Walnut Hills Legacy",
+    "address": "2701 Woodburn Ave, Cincinnati, OH 45206",
+    "lat": 39.1277763,
+    "lng": -84.4781254
+  },
+  {
+    "title": "Over-the-Rhine: Into its Renaissance",
+    "address": "1519 Vine St, Cincinnati, OH 45202",
+    "lat": 39.1123153,
+    "lng": -84.5160622
+  },
+  {
+    "title": "Spring Through Time",
+    "address": "4650 Spring Grove Ave, Cincinnati, OH 45232",
+    "lat": 39.164705,
+    "lng": -84.5179055
+  },
+  {
+    "title": "Riverside Vineyard",
+    "address": "908 Race St, Cincinnati, OH 45202",
+    "lat": 39.10557,
+    "lng": -84.515497
+  },
+  {
+    "title": "On the Shoulders of Giants",
+    "address": "959 W 8th St Cincinnati, OH 45203",
+    "lat": 39.1031581,
+    "lng": -84.5327031
+  },
+  {
+    "title": "Jubilant Rhythms of Roselawn",
+    "address": "1850 Summit Rd Cincinnati, OH 45237",
+    "lat": 39.2021267,
+    "lng": -84.4542625
+  },
+  {
+    "title": "The Face of the Arts",
+    "address": "1100 Race St, Cincinnati, OH 45202",
+    "lat": 39.1073284,
+    "lng": -84.5158956
+  },
+  {
+    "title": "Canal at Vine Street Circa 1900",
+    "address": "101 W Central Pkwy, Cincinnati, OH 45202",
+    "lat": 39.1066026,
+    "lng": -84.5162522
+  },
+  {
+    "title": "Dottin’ the Hill",
+    "address": "2901 Gilbert Ave, Cincinnati, OH 45206",
+    "lat": 39.1312472,
+    "lng": -84.4888517
+  },
+  {
+    "title": "The Scribe, the Fish, and the Sea",
+    "address": "5201 Whetsel Ave Cincinnati, OH 45227",
+    "lat": 39.1625748,
+    "lng": -84.3929882
+  },
+  {
+    "title": "A Window to the Past: A Reflection of Ludlow",
+    "address": "319 Ludlow Avenue",
+    "lat": 39.143271,
+    "lng": -84.519907
+  },
+  {
+    "title": "Heart of the Community",
+    "address": "3301 Beekman Street, Cincinnati, OH 45225",
+    "lat": 39.146878,
+    "lng": -84.5513914
+  },
+  {
+    "title": "Natural Migration",
+    "address": "3206 Warsaw Ave, Cincinnati, OH 45205",
+    "lat": 39.1101159,
+    "lng": -84.5633754
+  },
+  {
+    "title": "Northside Bloom",
+    "address": "4119 Hamilton Ave, Cincinnati, OH 45223",
+    "lat": 39.160822,
+    "lng": -84.539644
+  },
+  {
+    "title": "Love Blooms",
+    "address": "11 Benson Street, Reading, OH 45215",
+    "lat": 39.222646,
+    "lng": -84.441214
+  },
+  {
+    "title": "Tom Wesselmann, Still Life #60",
+    "address": "811 Main Street, Cincinnati, OH 45202",
+    "lat": 39.1051588,
+    "lng": -84.5108823
+  },
+  {
+    "title": "Heroes in Color",
+    "address": "1350 Tennessee Ave, Cincinnati, OH 45229",
+    "lat": 39.1686066,
+    "lng": -84.4714405
+  },
+  {
+    "title": "The Cincinnati Strong Man: Henry Holtgrewe",
+    "address": "1215 Vine Street, Cincinnati, OH 45202",
+    "lat": 39.1087398,
+    "lng": -84.5151124
+  },
+  {
+    "title": "Growing Community Connections",
+    "address": "2300 Williamsburg Dr, Cincinnati, OH 45225",
+    "lat": 39.1540831,
+    "lng": -84.5598308
+  },
+  {
+    "title": "Charley Harper’s Beguiled by the Wild",
+    "address": "3512 Vine Street, Cincinnati, OH 45220",
+    "lat": 39.145272,
+    "lng": -84.512783
+  },
+  {
+    "title": "Shining Seas",
+    "address": "1 Aquarium Way, Newport on the Levee, Newport, KY 41071",
+    "lat": 39.09469,
+    "lng": -84.496364
+  },
+  {
+    "title": "Revival",
+    "address": "131 E. McMicken Street, Cincinnati, OH 45202",
+    "lat": 39.1138643,
+    "lng": -84.513868
+  },
+  {
+    "title": "Boys Hope Girls Hope",
+    "address": "1725 Riverside Drive",
+    "lat": 34.1598064,
+    "lng": 0
+  },
+  {
+    "title": "Brewing Heritage: Grain to Glass",
+    "address": "25 Back Street, Cincinnati, Ohio 45202",
+    "lat": 39.1147242,
+    "lng": -84.5153844
+  },
+  {
+    "title": "Mr. Dynamite",
+    "address": "1437 Main Street, Cincinnati, Ohio 45202",
+    "lat": 39.1123813,
+    "lng": -84.5126898
+  },
+  {
+    "title": "The Queen Shares",
+    "address": "1100 Sycamore Street, Cincinnati, Ohio 45202",
+    "lat": 39.1081828,
+    "lng": -84.5092878
+  },
+  {
+    "title": "The Spirit of Progress",
+    "address": "2116 Duck Creek Road, Cincinnati, Ohio, 45207",
+    "lat": 39.14304,
+    "lng": -84.4616642
+  },
+  {
+    "title": "Ezzard Charles: The Cincinnati Cobra",
+    "address": "1537 Republic Street, Cincinnati, Ohio 45202",
+    "lat": 39.1126824,
+    "lng": -84.5169285
+  },
+  {
+    "title": "Dawn is Coming: Open Your Eyes",
+    "address": "1000 Sycamore Street, Cincinnati, Ohio 45202",
+    "lat": 39.1066152,
+    "lng": -84.5087679
+  },
+  {
+    "title": "Cheers to Cincy, Past and Present!",
+    "address": "1625 Central Parkway, Cincinnati, Ohio 45202",
+    "lat": 39.1149124,
+    "lng": -84.5233283
+  },
+  {
+    "title": "Shine",
+    "address": "Central Parkway & Central Parkway",
+    "lat": 39.1065801,
+    "lng": -84.5188684
+  },
+  {
+    "title": "Self-Portrait, Elizabeth Nourse",
+    "address": "8th Street & Walnut Street, Cincinnati, Ohio 45202",
+    "lat": 39.1046733,
+    "lng": -84.5121833
+  },
+  {
+    "title": "To Oakley with Love",
+    "address": "Oakley Kroger",
+    "lat": 39.1602479,
+    "lng": -84.4272816
+  },
+  {
+    "title": "#5: We Are Walnut Hills",
+    "address": "2429 Gilbert Avenue",
+    "lat": 39.1252253,
+    "lng": -84.4909835
+  },
+  {
+    "title": "Armstrong",
+    "address": "511 Walnut Street",
+    "lat": 39.1017476,
+    "lng": -84.5118246
+  },
+  {
+    "title": "Locks, Docks, and Barrels",
+    "address": "1008 Marshall Avenue",
+    "lat": 44.9482882,
+    "lng": 0
+  },
+  {
+    "title": "Riverfront Rise",
+    "address": "525 Elm Street",
+    "lat": 39.1011667,
+    "lng": -84.5179805
+  },
+  {
+    "title": "We Need Education Not Violence",
+    "address": "318 East 4th Street",
+    "lat": 34.077644,
+    "lng": 0
+  },
+  {
+    "title": "Me and You. You and Me.",
+    "address": "6620 Montgomery Road",
+    "lat": 39.1881356,
+    "lng": -84.4128678
+  },
+  {
+    "title": "New Lines",
+    "address": "OTR Alleyways bordered by: Main Street, Liberty Street, 13th Street and Sycamore Street",
+    "lat": 0,
+    "lng": 0
+  },
+  {
+    "title": "Prost to Cincinnati Installation Series",
+    "address": "Mini murals and installations are located around the OTR Brewery District",
+    "lat": 0,
+    "lng": 0
+  },
+  {
+    "title": "Rise",
+    "address": "1919 Elm Street",
+    "lat": 39.1170383,
+    "lng": -84.5206282
+  },
+  {
+    "title": "Swing Around Rosie",
+    "address": "1606 Pleasant Street",
+    "lat": 41.9669356,
+    "lng": -71.0248407
+  },
+  {
+    "title": "Cincinnati Toy Heritage",
+    "address": "23 West Court Street",
+    "lat": 29.5689091,
+    "lng": 0
+  },
+  {
+    "title": "Little Nemo in Slumberland",
+    "address": "917 Main Street",
+    "lat": 42.3764669,
+    "lng": -71.2480316
+  },
+  {
+    "title": "Little Sure Shot",
+    "address": "3211 Madison Road",
+    "lat": 39.1544988,
+    "lng": -84.427424
+  },
+  {
+    "title": "That’s My Dad – “That’s Somebody Else’s Dad” & “Hundreds of Feet”",
+    "address": "1200 Walnut St. Cincinnati, OH 45202",
+    "lat": 39.108701,
+    "lng": -84.51293
+  },
+  {
+    "title": "Rookwood Revival",
+    "address": "1920 Race St.  Cincinnati, OH 45202",
+    "lat": 39.1173341,
+    "lng": -84.5182926
+  },
+  {
+    "title": "Crazy Cat, Crazy Quilt",
+    "address": "1107 Walnut St. Cincinnati, OH 45202",
+    "lat": 39.1077535,
+    "lng": -84.5132962
+  },
+  {
+    "title": "Democracy!",
+    "address": "1200 Walnut St. Cincinnati, OH 45202",
+    "lat": 39.108701,
+    "lng": -84.51293
+  },
+  {
+    "title": "The Buzz Around Town",
+    "address": "1010 Elm St. Cincinanti, OH 45202",
+    "lat": 39.1062039,
+    "lng": -84.5174033
+  },
+  {
+    "title": "Razzle Camp",
+    "address": "2940 Colerain Ave. Cincinnati, OH 45225",
+    "lat": 39.1360425,
+    "lng": -84.5367279
+  },
+  {
+    "title": "Faces of Homelessness",
+    "address": "1225 Vine St. Cincinnati, OH 45202",
+    "lat": 39.1090134,
+    "lng": -84.5152306
+  },
+  {
+    "title": "Dream Big and Fly High",
+    "address": "151 W 5th St. Cincinnati, OH 45202",
+    "lat": 39.1003446,
+    "lng": -84.5157185
+  },
+  {
+    "title": "East Price Hill Mural Series",
+    "address": "Warsaw Ave. Cincinnati, OH 45205",
+    "lat": 39.11037,
+    "lng": -84.568673
+  }
 ]

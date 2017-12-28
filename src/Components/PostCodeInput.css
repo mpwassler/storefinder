@@ -1,6 +1,6 @@
 #postcode {
 	position: absolute;
-	background-color: #4264fb;
+	background-color: #3FB1CE;
 	height: 40px;
 	width: 420px;
 	top: calc(50% - 30px);
@@ -20,7 +20,7 @@
 	padding-left: 5%;
 	font-size: 24px;
 	color:#fff;
-	background-color: #4264fb;
+	background-color: #3FB1CE;
 	border-top-left-radius: 40px;
 	border-bottom-left-radius: 40px;
 	border: none;
@@ -63,9 +63,10 @@
 	padding: 3% 10%;
 	border: none;
 	font-size: 10px;
+	text-align: left;
 	cursor: pointer;
 }
-.postcode_suggestion:hover {
-	background-color: #4264fb;
+.postcode_suggestion:hover, .postcode_suggestion:focus {
+	background-color: #3FB1CE;
 	color: #fff;
 }
