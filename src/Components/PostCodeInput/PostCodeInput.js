@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './PostCodeInput.css';
 import MapboxClient from 'mapbox'
-import {throttle} from '../Utils/utils.js'
+import { connect } from 'react-redux'
+import {throttle} from '../../Utils/utils.js'
+
+import {findClosestLocationsToUser} from '../../Actions'
+
 
 class PostCodeInput extends Component {
 
-  token = 'pk.eyJ1IjoibWl0Y2hlbCIsImEiOiJjamJreXhjcHk0Z25kMzNtcmxqbzg4aXljIn0.7Nj9EE6iR3oWGe69UFwfNQ'
+  token = 'pk.eyJ1IjoibWl0Y2hlbCIsImEiOiJjamJreXhjcHk0Z25kMzNtcmxqbzg4aXljIn0.7Nj9EE6iR3oWGe69UFwfNQ';
   state = {
     suggestions: []
   }
@@ -47,10 +51,11 @@ class PostCodeInput extends Component {
     this.setState({suggestions: []})
   }
 
- emitCenterChange( geometry ) {
-    let event = new CustomEvent('move-map', { detail: geometry })
+ emitCenterChange( LngLat ) {
+    this.props.dispatch(findClosestLocationsToUser(LngLat))
+    //let event = new CustomEvent('move-map', { detail: geometry })
     // Triggers the event on the window object
-    window.dispatchEvent(event)
+    //window.dispatchEvent(event)
     this.killTypeAhead()
  }
 
@@ -60,7 +65,7 @@ class PostCodeInput extends Component {
 
   render() {
     return (
-      <div id="postcode" className="postcode">
+      <div id="postcode" className={`postcode ${ this.props.styleName }`} >
         <input 
         ref={ el => this.inputField = el} 
         onFocus={this.checkTypeAhead} 
@@ -68,7 +73,9 @@ class PostCodeInput extends Component {
         placeholder="Address" 
         className="postcode_field" 
         type="text" />
-        <button className="postcode_btn" onClick={ () => { this.emitCenterChange(this.state.suggestions[0].point) }} >Find</button>
+        <button className="postcode_btn" onClick={ () => { 
+          this.emitCenterChange(this.state.suggestions[0].point) 
+        }} >Find</button>
         <div className="postcode_suggestions" >
           {this.state.suggestions.map( s => {
             return <button key={s.place_name} className="postcode_suggestion" onClick={ () => {
@@ -81,4 +88,12 @@ class PostCodeInput extends Component {
   }
 }
 
-export default PostCodeInput;
+function mapStateToProps(state) {
+  return {
+    markers: state.markers,
+    centerPoint: state.centerPoint    
+  };
+}
+
+
+export default connect(mapStateToProps)(PostCodeInput)

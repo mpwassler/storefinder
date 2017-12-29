@@ -70,3 +70,19 @@
 	background-color: #3FB1CE;
 	color: #fff;
 }
+
+#postcode.postcode-list{
+	position: static;	
+	box-shadow: none;
+	border-radius: 0;
+	width: 100%;
+}
+#postcode.postcode-list .postcode_btn {	
+	border-top-right-radius: 0;	
+	border-bottom-right-radius: 0;
+}
+
+#postcode.postcode-list .postcode_field {	
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}

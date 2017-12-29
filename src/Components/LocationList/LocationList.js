@@ -26,11 +26,14 @@ class LocationList extends Component {
   	}
   	return (
   		<div className="sidebar">
+      {this.props.children}
   		{this.props.locations.map( (location, cnt) => {
 			return (
-				<div key={cnt} onClick={() => {
+				<div key={cnt} 
+				onClick={() => {
 					this.emitCenterChange([location.lng, location.lat])
-				}} className="sidebar_item">
+				}} 
+				className="sidebar_item">
 					<h1 className="sidebar_title" >{location.title}</h1>
 					<p className="sidebar_distance">{location.distance} Miles</p>
 				</div>

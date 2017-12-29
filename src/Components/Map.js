@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import mapboxgl, { Marker, LngLatBounds } from 'mapbox-gl';
-
+import store from '../Store'
+import {TweenMax, Power2} from 'gsap'
 //
 
 class Map extends Component {
@@ -8,27 +10,12 @@ class Map extends Component {
   token = 'pk.eyJ1IjoibWl0Y2hlbCIsImEiOiJjamJreXhjcHk0Z25kMzNtcmxqbzg4aXljIn0.7Nj9EE6iR3oWGe69UFwfNQ'
 
   state = {
+    userLatLng: [],
     markers: []
   }
 
   constructor(props) {
-    super(props);
-    window.addEventListener('move-map', this.moveMap.bind(this))             
-  }
-
-  moveMap(e) {
-    this.mapGL.flyTo({
-      center: e.detail, 
-      speed: 0.9,
-      curve: 1
-    })
-    if(this.state.markers.length) {      
-      let bounds =  new LngLatBounds(this.state.markers[0].getLngLat(), this.state.markers[0].getLngLat())      
-      var bounds = this.state.markers.reduce(function(bounds, coord, cnt) {
-            return bounds.extend(coord.getLngLat());
-        },bounds)
-      this.mapGL.fitBounds(bounds);      
-    }
+    super(props);   
   }
 
   componentDidMount() {
@@ -41,24 +28,102 @@ class Map extends Component {
     });    
   }
 
-  componentWillReceiveProps(nextProps) {
-    // You don't have to do this check first, but it can help prevent an unneeded render
-    this.state.markers.forEach( marker => marker.remove())
-    let markers = nextProps.children.map( child => {
-      return new Marker()
-      .setLngLat([child.props.lng, child.props.lat])
-      .addTo(this.mapGL)  
+  setCircleIndicatorOnMap( userLatLng ) {
+    if(this.mapGL.getSource("source_circle_500")) {
+      this.mapGL.removeLayer("circle500")
+      this.mapGL.removeLayer("circle501")
+      this.mapGL.removeSource("source_circle_500")
+      
+    }
+    this.mapGL.addSource("source_circle_500", {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": userLatLng
+                }
+            }]
+        }
+    });    
+    this.mapGL.addLayer({
+        "id": "circle500",
+        "type": "circle",
+        "source": "source_circle_500",   
+        "paint": {
+            "circle-radius": 0,
+            "circle-color": "#000",
+            "circle-opacity": 0.05
+        }
+    })
+    this.mapGL.addLayer({
+        "id": "circle501",
+        "type": "circle",
+        "source": "source_circle_500",   
+        "paint": {
+            "circle-radius": 10,
+            "circle-color": "#fff",
+            "circle-opacity": 1
+        }
     })    
-    this.setState({markers: markers})
+    TweenMax.to({value:10}, 1.25, {
+      value: 70,
+      repeat: -1,
+      ease: Power2.easeOut,
+      onUpdate: (tween) => {
+        console.log(tween)
+        this.mapGL.setPaintProperty("circle500","circle-radius", tween.target.value)
+      },
+      onUpdateParams:["{self}"]
+    }) 
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('recived props')
+    
+    
+    this.setCircleIndicatorOnMap(nextProps.userLatLng)      
+    
+    
+    console.log(this.mapGL.getLayer("circle500"))
+   
+    this.state.markers.forEach( marker => marker.remove())
+    if (nextProps.closestLocations.length) {
+      let markers = nextProps.closestLocations.map( child => {
+        return new Marker()
+        .setLngLat([child.lng, child.lat])
+        .addTo(this.mapGL)  
+      })          
+      this.setState({markers: markers})
+      if(markers.length) {      
+        let bounds =  new LngLatBounds(markers[0].getLngLat(), markers[0].getLngLat())      
+        var bounds = markers.reduce(function(bounds, coord, cnt) {
+              return bounds.extend(coord.getLngLat());
+          },bounds)
+        this.mapGL.fitBounds(bounds, {padding: {left: 500, bottom: 0, right:0, top:0}} );      
+      }
+    }
   }
 
   render() {
     return (
-      <div ref={ el => this.mapEl = el} id="map" className="map">
-        
+      <div ref={ el => this.mapEl = el} id="map" className="map">        
       </div>
     );
   }
 }
 
-export default Map;
+function mapStateToProps(state) {
+  return {
+    markers: state.markers,
+    // centerPoint: state.centerPoint,
+    userLatLng: state.userLatLng,
+    closestLocations: state.closestLocations,
+    locations: state.locations
+  };
+}
+
+
+export default connect(mapStateToProps)(Map)

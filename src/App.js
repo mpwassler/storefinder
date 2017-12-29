@@ -1,33 +1,24 @@
 import React, { Component } from 'react';
-import './App.css';
+
 import Map from './Components/Map'
-import PostCodeInput from './Components/PostCodeInput'
+import PostCodeInput from './Components/PostCodeInput/PostCodeInput'
 import Marker from './Components/Marker'
-import LocationList from './Components/LocationList'
+import LocationList from './Components/LocationList/LocationList'
 import {haversineSolver} from './Utils/geometry.js'
+import store from './Store'
+import { connect } from 'react-redux'
+
+
 
 
 class App extends Component {
-
-  state = { 
-    locations: [],
-    closestLocations: [] 
-  }
 
   constructor(props) {
     super(props);
     window.addEventListener('move-map', this.filterLocations.bind(this))
   }
 
-  filterLocations(e) {
-    let userLocation = {Lat: e.detail[1] , Lon: e.detail[0]}
-    let filteredLocations = this.state.locations.map( loc => ({
-        ...loc,
-        distance: haversineSolver( userLocation, {Lat: loc.lat , Lon: loc.lng })          
-    })).sort( ( a, b ) => {
-        return a.distance - b.distance
-    }).slice(0,8)
-    this.setState({closestLocations: filteredLocations})
+  filterLocations(e) {    
   }
 
   componentDidMount() {
@@ -44,18 +35,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">        
-        <Map>
-          {this.state.closestLocations.map( (l, cnt) => {
-            return <Marker key={cnt} title={l.title} lat={l.lat} lng={l.lng} />
-          })}
+        <Map locations="this.props.closestLocations" >
         </Map>
-        {this.state.closestLocations.length < 1 && 
+        {this.props.closestLocations.length < 1 && 
           <PostCodeInput />  
         }        
-        <LocationList locations={this.state.closestLocations} / >
+        <LocationList locations={this.props.closestLocations} >
+          <PostCodeInput styleName="postcode-list" /> 
+        </LocationList>
       </div>
     );
   }
 }
 
-export default App;
+
+function mapStateToProps(state) {
+  return {
+    closestLocations: state.closestLocations,
+    locations: state.locations    
+  };
+}
+
+
+export default connect(mapStateToProps)(App)
