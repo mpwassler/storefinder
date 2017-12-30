@@ -3,7 +3,6 @@ import Map from './Components/Map'
 import PostCodeInput from './Components/PostCodeInput/PostCodeInput'
 import LocationList from './Components/LocationList/LocationList'
 import {haversineSolver} from './Utils/geometry.js'
-import store from './Store'
 import { connect } from 'react-redux'
 
 class App extends Component {

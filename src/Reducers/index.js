@@ -15,35 +15,27 @@ const initState = {
 export default ( state = initState, action ) => {
 	switch(action.type) {
 		case 'FIND_USER_LOCATIONS':
-			return {
-				...state,
+			return { ...state,
+				userLatLng: action.payload,
 				closestLocations: state.locations
-					.map( loc => ({
-						...loc,
-						distance: getDistanceBetweenLatLgnPairs({
-							Lat: action.payload[1], 
-							Lon: action.payload[0]
-						}, {
-							Lat: loc.lat, 
-							Lon: loc.lng 
-						})          
+					.map( loc => ({ ...loc,
+						distance: getDistanceBetweenLatLgnPairs(
+							{Lat: action.payload[1], Lon: action.payload[0]}, 
+							{Lat: loc.lat, Lon: loc.lng }
+						)          
 					}))
 					.sort( ( a, b ) => a.distance - b.distance)
-					.slice(0,8),
-				userLatLng: action.payload
+					.slice(0,8)
 			}
 		case 'SET_LOCATIONS':
-			return {
-				...state,
+			return { ...state,
 				locations: action.payload
 			}
 		case 'SET_DIRECTIONS':
-			return {
-				...state,
+			return { ...state,
 				directions: action.payload
 			}
 		default:
 			return state		
-	}
-	
+	}	
 }
