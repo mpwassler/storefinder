@@ -7,7 +7,7 @@ function miles(i) {
 	return  Math.round( ( i * 0.000621371192 ) * 100) / 100 
 }
 
-export function haversineSolver( latLon1, latLon2 ) {
+export function getDistanceBetweenLatLgnPairs( latLon1, latLon2 ) {
 	let R = 6371e3 // metres
 	let Lat1 = radians(latLon1.Lat)
 	let Lat2 = radians(latLon2.Lat)
