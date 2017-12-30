@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import {haversineSolver} from './Utils/geometry.js'
 import Map from './Components/Map'
 import PostCodeInput from './Components/PostCodeInput/PostCodeInput'
 import LocationList from './Components/LocationList/LocationList'
-import {haversineSolver} from './Utils/geometry.js'
-import { connect } from 'react-redux'
 
-class App extends Component {
-
-	render() {
-		return (
-			<div className="App">        
-				<Map locations="this.props.closestLocations" >
-				</Map>
-				{this.props.closestLocations.length < 1 && 
-					<PostCodeInput />  
-				}        
-				<LocationList locations={this.props.closestLocations} >
-					<PostCodeInput styleName="postcode-list" /> 
-				</LocationList>
-			</div>
-		);
-	}
+const App = (props) => {
+	return (
+		<div className="App">        
+			<Map locations="props.closestLocations" >
+			</Map>
+			{props.closestLocations.length < 1 && 
+				<PostCodeInput />  
+			}        
+			<LocationList locations={props.closestLocations} >
+				<PostCodeInput styleName="postcode-list" /> 
+			</LocationList>
+		</div>
+	)	
 }
 
 function mapStateToProps(state) {
