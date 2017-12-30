@@ -1,7 +1,5 @@
 Future blog post demo project
 
-work in progress
-
 ### yarn install
 
 ### yarn start
