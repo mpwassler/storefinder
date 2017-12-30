@@ -6,9 +6,6 @@ import { decode } from 'polyline';
 import {TweenMax, Power2} from 'gsap'
 
 class Map extends Component {
-
-	token = 'pk.eyJ1IjoibWl0Y2hlbCIsImEiOiJjamJreXhjcHk0Z25kMzNtcmxqbzg4aXljIn0.7Nj9EE6iR3oWGe69UFwfNQ'
-
 	state = {
 		userLatLng: [],
 		markers: [],
@@ -16,7 +13,7 @@ class Map extends Component {
 	}
 
 	componentDidMount() {
-		mapboxgl.accessToken = this.token
+		mapboxgl.accessToken = this.props.token
 		this.mapGL = new mapboxgl.Map({
 			container: this.mapEl,
 			style: 'mapbox://styles/mapbox/streets-v9',
@@ -168,7 +165,8 @@ function mapStateToProps(state) {
 		userLatLng: state.userLatLng,
 		closestLocations: state.closestLocations,
 		locations: state.locations,
-		directions: state.directions
+		directions: state.directions,
+		token: state.token
 	};
 }
 
