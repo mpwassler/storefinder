@@ -122,14 +122,21 @@ class Map extends Component {
                 "line-cap": "round"
             },
             "paint": {
-                "line-color": "#666",
+                "line-color": "#3FB1CE",
                 "line-width": 7,
                 "line-opacity": 0.8
             }
         });
   }
 
-  componentWillReceiveProps(nextProps) {    
+  componentWillReceiveProps(nextProps) {   
+
+    /* TODO: 
+    *  clean this method up more and break 
+    *  map activity into smaller functions. 
+    *  Compare props for change to 
+    *  improve performance
+    */       
     if(this.state.mapHasLoaded) {
       if(nextProps.directions) {
         this.drawDirectionPolyline(nextProps.directions)

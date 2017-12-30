@@ -1,7 +1,4 @@
-// export const updateUserLocation = (location) => ({	
-//       type:'SET_CENTER_POINT',
-//       payload: location    
-// })
+
 import {httpRequest} from '../Utils/utils'
 
 export const findClosestLocationsToUser = (location) => ({	
