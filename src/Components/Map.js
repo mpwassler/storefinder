@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import mapboxgl, { Marker, LngLatBounds } from 'mapbox-gl';
+import mapboxgl, { Marker, LngLatBounds } from 'mapbox-gl'
 import store from '../Store'
-import { decode } from 'polyline';
+import { decode } from 'polyline'
 import {TweenMax, Power2} from 'gsap'
 
 class Map extends Component {
@@ -20,7 +20,7 @@ class Map extends Component {
 			center: [ -84.512552, 39.101698],
 			zoom: 15,
 			pitch: 10 // pitch in degrees
-		});    
+		})    
 		this.mapGL.on('load', () => {
 			this.setState({mapHasLoaded : true})
 		})
@@ -45,7 +45,7 @@ class Map extends Component {
 					}
 				}]
 			}
-		});    
+		})    
 		this.mapGL.addLayer({
 			"id": "circle500",
 			"type": "circle",
@@ -84,8 +84,8 @@ class Map extends Component {
 		 const reduceCoodinates = (directions) => {
 			return directions.reduce( (carry, route, cnt) => {
 				const decoded = decode(route.geometry).map(function(c) {
-					 return c.reverse();
-				});
+					 return c.reverse()
+				})
 				return [ ...carry, ...decoded ] 
 			}, [])
 		}    
@@ -116,7 +116,7 @@ class Map extends Component {
 				"line-width": 7,
 				"line-opacity": 0.8
 			}
-		});
+		})
 	}
 
 	componentWillReceiveProps(nextProps) {   
@@ -143,9 +143,9 @@ class Map extends Component {
 				if(markers.length) {      
 					let bounds =  new LngLatBounds(nextProps.userLatLng, markers[0].getLngLat())      
 					var bounds = markers.reduce(function(bounds, coord, cnt) {
-								return bounds.extend(coord.getLngLat());
+								return bounds.extend(coord.getLngLat())
 						},bounds)
-					this.mapGL.fitBounds(bounds, {padding: {left: 500, bottom: 40, right:40, top:40}} );      
+					this.mapGL.fitBounds(bounds, {padding: {left: 500, bottom: 40, right:40, top:40}} )      
 				}
 			}
 		}
@@ -155,7 +155,7 @@ class Map extends Component {
 		return (
 			<div ref={ el => this.mapEl = el} id="map" className="map">        
 			</div>
-		);
+		)
 	}
 }
 
@@ -167,7 +167,7 @@ function mapStateToProps(state) {
 		locations: state.locations,
 		directions: state.directions,
 		token: state.token
-	};
+	}
 }
 
 

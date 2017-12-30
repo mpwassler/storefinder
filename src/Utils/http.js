@@ -21,7 +21,8 @@ export const getDirectionsFromApi = (userLatLng, locationLatLng, token) => {
 	if (!localStorage.getItem(key)) {
 		return httpRequest(`https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${userLatLng.join(',')};${locationLatLng.join(',')}.json?geometries=polyline&alternatives=false&steps=true&overview=full&access_token=${token}`)
 		.then( dir => {
-			localStorage.setItem(key, JSON.stringify(dir))							
+			localStorage.setItem(key, JSON.stringify(dir))
+			return dir							
 		} )			
 	} else {
 		return new Promise( (res, reg) => {			
