@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import mapboxgl, { Marker, LngLatBounds } from 'mapbox-gl';
 import store from '../Store'
+import { decode } from 'polyline';
+
 import {TweenMax, Power2} from 'gsap'
 //
 
@@ -93,11 +95,16 @@ class Map extends Component {
     }
      const reduceCoodinates = (directions) => {
       return directions.reduce( (carry, route, cnt) => {
-        route.legs.forEach( (leg) => {
-          leg.steps.forEach( step => {
-            carry = [ ...carry, step.maneuver.location ] 
-          })
-        })
+        const decoded = decode(route.geometry).map(function(c) {
+           return c.reverse();
+        });
+        return [ ...carry, ...decoded ] 
+        // route.legs.forEach( (leg) => {
+        //   leg.steps.forEach( step => {
+        //     carry = [ ...carry, step.maneuver.location ] 
+        //   })
+        // })
+
         return carry          
       }, [])
     }
@@ -116,7 +123,7 @@ class Map extends Component {
                     "properties": {},
                     "geometry": {
                         "type": "LineString",
-                        "coordinates": reduceCoodinates(directions)
+                        "coordinates": reduceCoodinates(directions.routes)
                     }
                 }
             },

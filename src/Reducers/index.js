@@ -35,7 +35,7 @@ export default ( state = initState, action ) => {
 		case 'SET_DIRECTIONS':
 			return {
 				...state,
-				directions: action.payload.routes
+				directions: action.payload
 
 			}
 		default:
