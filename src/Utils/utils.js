@@ -29,16 +29,3 @@ export  const throttle = (func, wait, options) => {
     return result;
   };
 };
-
-export const httpRequest = (url) => {
-  return new Promise( (resolve, reject) => {
-    var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {                        
-              resolve( JSON.parse(xhttp.responseText))
-          }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
-  })
-}

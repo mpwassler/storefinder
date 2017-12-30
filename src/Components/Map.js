@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import mapboxgl, { Marker, LngLatBounds } from 'mapbox-gl';
 import store from '../Store'
 import { decode } from 'polyline';
-
 import {TweenMax, Power2} from 'gsap'
-//
 
 class Map extends Component {
 
@@ -15,11 +13,6 @@ class Map extends Component {
     userLatLng: [],
     markers: [],
     mapHasLoaded: false
-  }
-
-  constructor(props) {
-    super(props);   
-
   }
 
   componentDidMount() {
