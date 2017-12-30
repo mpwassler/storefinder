@@ -8,7 +8,8 @@ const initState = {
 	locations: [],
 	closestLocations: [] ,
 	markers: [],
-	directions: []
+	directions: [],
+	token: 'pk.eyJ1IjoibWl0Y2hlbCIsImEiOiJjamJreXhjcHk0Z25kMzNtcmxqbzg4aXljIn0.7Nj9EE6iR3oWGe69UFwfNQ'
 }
 
 export default ( state = initState, action ) => {

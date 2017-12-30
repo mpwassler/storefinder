@@ -18,7 +18,7 @@ class LocationList extends Component {
     console.log('clicked')
     //{title: "The Raymond Thunder-Sky Legacy Mural", address: "3841 Spring Grove Ave Cincinnati, Ohio", lat: 39.1567535, lng: -84.5410108, distance: 4.94}
     console.log(location)
-    this.props.dispatch(getDirections([location.lng, location.lat], userLocation))
+    this.props.dispatch(getDirections([location.lng, location.lat], userLocation, this.props.token))
   }
 
   render () {
@@ -54,7 +54,8 @@ class LocationList extends Component {
 function mapStateToProps(state) {
   return {
     locations: state.closestLocations,
-    userLatLng: state.userLatLng 
+    userLatLng: state.userLatLng ,
+    token: state.token
   };
 }
 export default connect(mapStateToProps)(LocationList)

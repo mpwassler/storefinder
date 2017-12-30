@@ -21,24 +21,30 @@ export const setDirections = (dir) => ({
 
 
 function getLocationsFromApi() {
+
 	return httpRequest("locations.json")	
 }
 
-function getDirectionsFromApi(userLatLng, locationLatLng) {
-	return httpRequest(`https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${userLatLng.join(',')};${locationLatLng.join(',')}.json?geometries=polyline&alternatives=false&steps=true&overview=full&access_token=pk.eyJ1IjoibWl0Y2hlbCIsImEiOiJjamJreXhjcHk0Z25kMzNtcmxqbzg4aXljIn0.7Nj9EE6iR3oWGe69UFwfNQ`)	
+function getDirectionsFromApi(userLatLng, locationLatLng, token) {
+	let key = '_geometry' + userLatLng.join('|') + locationLatLng.join('|')
+	if (!localStorage.getItem(key)) {
+		return httpRequest(`https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${userLatLng.join(',')};${locationLatLng.join(',')}.json?geometries=polyline&alternatives=false&steps=true&overview=full&access_token=${token}`)
+		.then( dir => {
+			localStorage.setItem(key, JSON.stringify(dir))							
+		} )			
+	} else {
+		return new Promise( (res, reg) => {			
+			res(JSON.parse(localStorage.getItem(key)))
+		})		
+	}
 }
 
-//https://api.mapbox.com/directions/v5/mapbox/driving-traffic/-84.63307%2C39.16057%3B-84.513449%2C39.104017.json?geometries=polyline&alternatives=true&steps=true&overview=full&access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA
-//https://api.mapbox.com/directions/v5/{profile}/{coordinates}
-
-export const getDirections = ( userLatLng, locationLatLng ) => {
+export const getDirections = ( userLatLng, locationLatLng, token ) => {
 	return function (dispatch) {
 		console.log('get directions')
-		console.log(userLatLng)
-		console.log(locationLatLng)
-		getDirectionsFromApi(userLatLng, locationLatLng)
+		getDirectionsFromApi(userLatLng, locationLatLng, token)
 		.then( dir => {
-			dispatch(setDirections(dir))
+			dispatch(setDirections(dir))			
 		})
 	}
 }

@@ -42,10 +42,8 @@ class Map extends Component {
       this.mapGL.removeLayer("circle501")
       this.mapGL.removeSource("source_circle_500")
       
-    }
-    console.log(this.mapGL)
-    
-      this.mapGL.addSource("source_circle_500", {
+    }        
+    this.mapGL.addSource("source_circle_500", {
           "type": "geojson",
           "data": {
               "type": "FeatureCollection",
@@ -57,8 +55,8 @@ class Map extends Component {
                   }
               }]
           }
-      });    
-      this.mapGL.addLayer({
+    });    
+    this.mapGL.addLayer({
           "id": "circle500",
           "type": "circle",
           "source": "source_circle_500",   
@@ -67,8 +65,8 @@ class Map extends Component {
               "circle-color": "#000",
               "circle-opacity": 0.05
           }
-      })
-      this.mapGL.addLayer({
+    })
+    this.mapGL.addLayer({
           "id": "circle501",
           "type": "circle",
           "source": "source_circle_500",   
@@ -77,16 +75,16 @@ class Map extends Component {
               "circle-color": "#fff",
               "circle-opacity": 1
           }
-      })    
-      TweenMax.to({value:10}, 1.25, {
-        value: 70,
-        repeat: -1,
-        ease: Power2.easeOut,
-        onUpdate: (tween) => {
-          this.mapGL.setPaintProperty("circle500","circle-radius", tween.target.value)
-        },
-        onUpdateParams:["{self}"]
-      })  
+    })    
+    TweenMax.to({value:10}, 1.25, {
+      value: 70,
+      repeat: -1,
+      ease: Power2.easeOut,
+      onUpdate: (tween) => {
+        this.mapGL.setPaintProperty("circle500","circle-radius", tween.target.value)
+      },
+      onUpdateParams:["{self}"]
+    })  
   }
 
   drawDirectionPolyline(directions) {
@@ -99,16 +97,8 @@ class Map extends Component {
            return c.reverse();
         });
         return [ ...carry, ...decoded ] 
-        // route.legs.forEach( (leg) => {
-        //   leg.steps.forEach( step => {
-        //     carry = [ ...carry, step.maneuver.location ] 
-        //   })
-        // })
-
-        return carry          
       }, [])
-    }
-    console.log('polyline',directions)
+    }    
     if(this.mapGL.getSource("route")) {      
       this.mapGL.removeLayer("route")      
       this.mapGL.removeSource("route")                  
@@ -139,16 +129,12 @@ class Map extends Component {
         });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('recived props')
-    
+  componentWillReceiveProps(nextProps) {    
     if(this.state.mapHasLoaded) {
       if(nextProps.directions) {
         this.drawDirectionPolyline(nextProps.directions)
       }
-      this.setCircleIndicatorOnMap(nextProps.userLatLng)            
-      console.log(this.mapGL.getLayer("circle500"))
-     
+      this.setCircleIndicatorOnMap(nextProps.userLatLng)                  
       this.state.markers.forEach( marker => marker.remove())
       if (nextProps.closestLocations.length) {
         let markers = nextProps.closestLocations.map( child => {
@@ -179,7 +165,6 @@ class Map extends Component {
 function mapStateToProps(state) {
   return {
     markers: state.markers,
-    // centerPoint: state.centerPoint,
     userLatLng: state.userLatLng,
     closestLocations: state.closestLocations,
     locations: state.locations,
