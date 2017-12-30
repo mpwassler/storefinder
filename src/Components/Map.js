@@ -11,11 +11,13 @@ class Map extends Component {
 
   state = {
     userLatLng: [],
-    markers: []
+    markers: [],
+    mapHasLoaded: false
   }
 
   constructor(props) {
     super(props);   
+
   }
 
   componentDidMount() {
@@ -26,6 +28,9 @@ class Map extends Component {
         center: [ -84.512552, 39.101698],
         zoom: 15
     });    
+    this.mapGL.on('load', () => {
+      this.setState({mapHasLoaded : true})
+    })
   }
 
   setCircleIndicatorOnMap( userLatLng ) {
@@ -35,74 +40,79 @@ class Map extends Component {
       this.mapGL.removeSource("source_circle_500")
       
     }
-    this.mapGL.addSource("source_circle_500", {
-        "type": "geojson",
-        "data": {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": userLatLng
-                }
-            }]
-        }
-    });    
-    this.mapGL.addLayer({
-        "id": "circle500",
-        "type": "circle",
-        "source": "source_circle_500",   
-        "paint": {
-            "circle-radius": 0,
-            "circle-color": "#000",
-            "circle-opacity": 0.05
-        }
-    })
-    this.mapGL.addLayer({
-        "id": "circle501",
-        "type": "circle",
-        "source": "source_circle_500",   
-        "paint": {
-            "circle-radius": 10,
-            "circle-color": "#fff",
-            "circle-opacity": 1
-        }
-    })    
-    TweenMax.to({value:10}, 1.25, {
-      value: 70,
-      repeat: -1,
-      ease: Power2.easeOut,
-      onUpdate: (tween) => {
-        console.log(tween)
-        this.mapGL.setPaintProperty("circle500","circle-radius", tween.target.value)
-      },
-      onUpdateParams:["{self}"]
-    }) 
+    console.log(this.mapGL)
+    
+      this.mapGL.addSource("source_circle_500", {
+          "type": "geojson",
+          "data": {
+              "type": "FeatureCollection",
+              "features": [{
+                  "type": "Feature",
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": userLatLng
+                  }
+              }]
+          }
+      });    
+      this.mapGL.addLayer({
+          "id": "circle500",
+          "type": "circle",
+          "source": "source_circle_500",   
+          "paint": {
+              "circle-radius": 0,
+              "circle-color": "#000",
+              "circle-opacity": 0.05
+          }
+      })
+      this.mapGL.addLayer({
+          "id": "circle501",
+          "type": "circle",
+          "source": "source_circle_500",   
+          "paint": {
+              "circle-radius": 10,
+              "circle-color": "#fff",
+              "circle-opacity": 1
+          }
+      })    
+      TweenMax.to({value:10}, 1.25, {
+        value: 70,
+        repeat: -1,
+        ease: Power2.easeOut,
+        onUpdate: (tween) => {
+          this.mapGL.setPaintProperty("circle500","circle-radius", tween.target.value)
+        },
+        onUpdateParams:["{self}"]
+      }) 
+  
+    
   }
 
   componentWillReceiveProps(nextProps) {
     console.log('recived props')
     
-    
-    this.setCircleIndicatorOnMap(nextProps.userLatLng)      
-    
-    
-    console.log(this.mapGL.getLayer("circle500"))
-   
-    this.state.markers.forEach( marker => marker.remove())
-    if (nextProps.closestLocations.length) {
-      let markers = nextProps.closestLocations.map( child => {
-        return new Marker()
-        .setLngLat([child.lng, child.lat])
-        .addTo(this.mapGL)  
-      })          
-      this.setState({markers: markers})
-      if(markers.length) {      
-        let bounds =  new LngLatBounds(markers[0].getLngLat(), markers[0].getLngLat())      
-        var bounds = markers.reduce(function(bounds, coord, cnt) {
-              return bounds.extend(coord.getLngLat());
-          },bounds)
-        this.mapGL.fitBounds(bounds, {padding: {left: 500, bottom: 0, right:0, top:0}} );      
+    if(this.state.mapHasLoaded) {
+      this.setCircleIndicatorOnMap(nextProps.userLatLng)      
+      
+      
+      
+      console.log(this.mapGL.getLayer("circle500"))
+     
+      this.state.markers.forEach( marker => marker.remove())
+      if (nextProps.closestLocations.length) {
+        let markers = nextProps.closestLocations.map( child => {
+          return new Marker()
+          .setLngLat([child.lng, child.lat])
+          .addTo(this.mapGL)  
+        })          
+        this.setState({markers: markers})
+        if(markers.length) {      
+          let bounds =  new LngLatBounds(nextProps.userLatLng, markers[0].getLngLat())      
+          var bounds = markers.reduce(function(bounds, coord, cnt) {
+                return bounds.extend(coord.getLngLat());
+            },bounds)
+          this.mapGL.fitBounds(bounds, {padding: {left: 500, bottom: 40, right:40, top:40}} );      
+        }
       }
     }
   }

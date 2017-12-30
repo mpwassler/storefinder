@@ -22,14 +22,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = () => {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {           
-           this.setState({locations: JSON.parse(xhttp.responseText)})
-        }
-    };
-    xhttp.open("GET", "locations.json", true);
-    xhttp.send();
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = () => {
+    //     if (xhttp.readyState == 4 && xhttp.status == 200) {           
+    //        this.setState({locations: JSON.parse(xhttp.responseText)})
+    //     }
+    // };
+    // xhttp.open("GET", "locations.json", true);
+    // xhttp.send();
   }
 
   render() {
