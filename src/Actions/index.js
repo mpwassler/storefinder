@@ -22,7 +22,6 @@ export const setDirections = (dir) => ({
 
 export const getDirections = ( userLatLng, locationLatLng, token ) => {
 	return function (dispatch) {
-		console.log('get directions')
 		getDirectionsFromApi(userLatLng, locationLatLng, token)
 		.then( dir => {
 			dispatch(setDirections(dir))			
@@ -31,7 +30,6 @@ export const getDirections = ( userLatLng, locationLatLng, token ) => {
 }
 
 export const getLocations = () => {
-	console.log('dispatch')
 	return function (dispatch) {
 		getLocationsFromApi()
 		.then( locations => {

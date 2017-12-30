@@ -8,27 +8,27 @@ import { connect } from 'react-redux'
 
 class App extends Component {
 
-  render() {
-    return (
-      <div className="App">        
-        <Map locations="this.props.closestLocations" >
-        </Map>
-        {this.props.closestLocations.length < 1 && 
-          <PostCodeInput />  
-        }        
-        <LocationList locations={this.props.closestLocations} >
-          <PostCodeInput styleName="postcode-list" /> 
-        </LocationList>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="App">        
+				<Map locations="this.props.closestLocations" >
+				</Map>
+				{this.props.closestLocations.length < 1 && 
+					<PostCodeInput />  
+				}        
+				<LocationList locations={this.props.closestLocations} >
+					<PostCodeInput styleName="postcode-list" /> 
+				</LocationList>
+			</div>
+		);
+	}
 }
 
 function mapStateToProps(state) {
-  return {
-    closestLocations: state.closestLocations,
-    locations: state.locations    
-  };
+	return {
+		closestLocations: state.closestLocations,
+		locations: state.locations    
+	};
 }
 
 export default connect(mapStateToProps)(App)
