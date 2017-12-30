@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import './LocationList.css';
+import { connect } from 'react-redux'
+import { getDirections } from '../../Actions'
 
 class LocationList extends Component {
 
    constructor(props) {
     super(props);
-    this.emitCenterChange = this.emitCenterChange.bind(this)
+    
   }	
 
   componentDidMount() {
    
   }
 
-  emitCenterChange( geometry ) {
-     let event = new CustomEvent('move-map', { detail: geometry })
-     // Triggers the event on the window object
-     window.dispatchEvent(event)
+  handleClick(location, userLocation) {
+    console.log('clicked')
+    //{title: "The Raymond Thunder-Sky Legacy Mural", address: "3841 Spring Grove Ave Cincinnati, Ohio", lat: 39.1567535, lng: -84.5410108, distance: 4.94}
+    console.log(location)
+    this.props.dispatch(getDirections([location.lng, location.lat], userLocation))
   }
 
   render () {
@@ -24,15 +27,16 @@ class LocationList extends Component {
   	if (!hasLocation) {
   		return false
   	}
+    //[location.lng, location.lat]
   	return (
   		<div className="sidebar">
       {this.props.children}
   		{this.props.locations.map( (location, cnt) => {
 			return (
 				<div key={cnt} 
-				onClick={() => {
-					this.emitCenterChange([location.lng, location.lat])
-				}} 
+        onMouseEnter={() => {
+          this.handleClick(location, this.props.userLatLng)
+        }}
 				className="sidebar_item">
 					<h1 className="sidebar_title" >{location.title}</h1>
 					<p className="sidebar_distance">{location.distance} Miles</p>
@@ -45,4 +49,12 @@ class LocationList extends Component {
 
 }
 
-export default LocationList;
+
+
+function mapStateToProps(state) {
+  return {
+    locations: state.closestLocations,
+    userLatLng: state.userLatLng 
+  };
+}
+export default connect(mapStateToProps)(LocationList)

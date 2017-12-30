@@ -26,7 +26,8 @@ class Map extends Component {
         container: this.mapEl,
         style: 'mapbox://styles/mapbox/streets-v9',
         center: [ -84.512552, 39.101698],
-        zoom: 15
+        zoom: 15,
+        pitch: 10 // pitch in degrees
     });    
     this.mapGL.on('load', () => {
       this.setState({mapHasLoaded : true})
@@ -83,19 +84,62 @@ class Map extends Component {
           this.mapGL.setPaintProperty("circle500","circle-radius", tween.target.value)
         },
         onUpdateParams:["{self}"]
-      }) 
-  
-    
+      })  
+  }
+
+  drawDirectionPolyline(directions) {
+    if (directions.length < 1) {
+      return false
+    }
+     const reduceCoodinates = (directions) => {
+      return directions.reduce( (carry, route, cnt) => {
+        route.legs.forEach( (leg) => {
+          leg.steps.forEach( step => {
+            carry = [ ...carry, step.maneuver.location ] 
+          })
+        })
+        return carry          
+      }, [])
+    }
+    console.log('polyline',directions)
+    if(this.mapGL.getSource("route")) {      
+      this.mapGL.removeLayer("route")      
+      this.mapGL.removeSource("route")                  
+    }
+    this.mapGL.addLayer({
+            "id": "route",
+            "type": "line",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": reduceCoodinates(directions)
+                    }
+                }
+            },
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#666",
+                "line-width": 7,
+                "line-opacity": 0.8
+            }
+        });
   }
 
   componentWillReceiveProps(nextProps) {
     console.log('recived props')
     
     if(this.state.mapHasLoaded) {
-      this.setCircleIndicatorOnMap(nextProps.userLatLng)      
-      
-      
-      
+      if(nextProps.directions) {
+        this.drawDirectionPolyline(nextProps.directions)
+      }
+      this.setCircleIndicatorOnMap(nextProps.userLatLng)            
       console.log(this.mapGL.getLayer("circle500"))
      
       this.state.markers.forEach( marker => marker.remove())
@@ -131,7 +175,8 @@ function mapStateToProps(state) {
     // centerPoint: state.centerPoint,
     userLatLng: state.userLatLng,
     closestLocations: state.closestLocations,
-    locations: state.locations
+    locations: state.locations,
+    directions: state.directions
   };
 }
 

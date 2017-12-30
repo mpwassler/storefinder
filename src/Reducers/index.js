@@ -6,8 +6,9 @@ const initState = {
 	userLatLng: [0,0],
 	suggestions: [],
 	locations: [],
-    closestLocations: [] ,
-    markers: []
+	closestLocations: [] ,
+	markers: [],
+	directions: []
 }
 
 export default ( state = initState, action ) => {
@@ -18,10 +19,10 @@ export default ( state = initState, action ) => {
 			return {
 				...state,
 				closestLocations: state.locations.map( loc => ({
-			    	...loc,
-			    	distance: haversineSolver({Lat: action.payload[1] , Lon: action.payload[0]}, {Lat: loc.lat , Lon: loc.lng })          
+					...loc,
+					distance: haversineSolver({Lat: action.payload[1] , Lon: action.payload[0]}, {Lat: loc.lat , Lon: loc.lng })          
 				})).sort( ( a, b ) => {
-			    	return a.distance - b.distance
+					return a.distance - b.distance
 				}).slice(0,8),
 				userLatLng: action.payload
 			}
@@ -29,6 +30,12 @@ export default ( state = initState, action ) => {
 			return {
 				...state,
 				locations: action.payload
+
+			}
+		case 'SET_DIRECTIONS':
+			return {
+				...state,
+				directions: action.payload.routes
 
 			}
 		default:
