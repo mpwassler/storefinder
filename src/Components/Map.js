@@ -96,10 +96,9 @@ class Map extends Component {
 					"geometry": {
 						"type": "LineString",
 						"coordinates": directions.routes.reduce( (carry, route, cnt) => {
-							const decoded = decode(route.geometry).map(function(c) {
+							return [ ...carry, ...decode(route.geometry).map(function(c) {
 								 return c.reverse()
-							})
-							return [ ...carry, ...decoded ] 
+							}) ] 
 						}, [])
 					}
 				}

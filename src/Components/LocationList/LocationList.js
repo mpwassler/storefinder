@@ -16,6 +16,7 @@ const LocationList = (props) => {
 			}}
 			className="sidebar_item">
 				<h1 className="sidebar_title" >{location.title}</h1>
+				<p className="sidebar_address">{location.address}</p>
 				<p className="sidebar_distance">{location.distance} Miles</p>
 			</div>
 		)

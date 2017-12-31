@@ -29,7 +29,8 @@
 	font-size: 16px;
 	text-align: left;
 }
-.sidebar_distance{
+.sidebar_distance,
+.sidebar_address{
 	text-align: left;
 	font-size: 11px;
 }
