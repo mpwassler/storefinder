@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {haversineSolver} from './Utils/geometry.js'
 import Map from './Components/Map'
@@ -8,8 +8,7 @@ import LocationList from './Components/LocationList/LocationList'
 const App = (props) => {
 	return (
 		<div className="App">        
-			<Map locations="props.closestLocations" >
-			</Map>
+			<Map locations="props.closestLocations" />
 			{props.closestLocations.length < 1 && 
 				<PostCodeInput />  
 			}        
@@ -24,7 +23,7 @@ function mapStateToProps(state) {
 	return {
 		closestLocations: state.closestLocations,
 		locations: state.locations    
-	};
+	}
 }
 
 export default connect(mapStateToProps)(App)

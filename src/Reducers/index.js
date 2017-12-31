@@ -6,7 +6,7 @@ const initState = {
 	userLatLng: [0,0],
 	suggestions: [],
 	locations: [],
-	closestLocations: [] ,
+	closestLocations: [],
 	markers: [],
 	directions: [],
 	token: 'pk.eyJ1IjoibWl0Y2hlbCIsImEiOiJjamJreXhjcHk0Z25kMzNtcmxqbzg4aXljIn0.7Nj9EE6iR3oWGe69UFwfNQ'

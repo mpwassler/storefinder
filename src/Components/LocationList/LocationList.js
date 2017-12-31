@@ -3,11 +3,8 @@ import './LocationList.css';
 import { connect } from 'react-redux'
 import { getDirections } from '../../Actions'
 
-const LocationList = (props) => {
-	let hasLocation = props.locations.length
-	if (!hasLocation) {
-		return false
-	}
+const LocationList = (props) => {	
+	if (!props.locations.length) return false	
 	return (
 		<div className="sidebar">
 		{props.children}
@@ -27,7 +24,7 @@ const LocationList = (props) => {
 	)
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
 	return {
 		locations: state.closestLocations,
 		userLatLng: state.userLatLng ,

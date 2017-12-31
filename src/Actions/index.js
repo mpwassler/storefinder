@@ -21,19 +21,15 @@ export const setDirections = (dir) => ({
 })
 
 export const getDirections = ( userLatLng, locationLatLng, token ) => {
-	return function (dispatch) {
+	return (dispatch) => {
 		getDirectionsFromApi(userLatLng, locationLatLng, token)
-		.then( dir => {
-			dispatch(setDirections(dir))			
-		})
+		.then( dir => { dispatch(setDirections(dir)) })
 	}
 }
 
 export const getLocations = () => {
-	return function (dispatch) {
+	return (dispatch) => {
 		getLocationsFromApi()
-		.then( locations => {
-			dispatch(setLocations(locations))
-		})
+		.then( locations => { dispatch(setLocations(locations)) })
 	}
 }

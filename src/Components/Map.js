@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import mapboxgl, { Marker, LngLatBounds } from 'mapbox-gl'
-// import store from '../Store'
 import { decode } from 'polyline'
 import {TweenMax, Power2} from 'gsap'
 
@@ -9,7 +8,8 @@ class Map extends Component {
 	state = {
 		userLatLng: [],
 		markers: [],
-		mapHasLoaded: false
+		mapHasLoaded: false,
+		bounds: {}
 	}
 
 	componentDidMount() {
@@ -81,14 +81,6 @@ class Map extends Component {
 		if (directions.length < 1) {
 			return false
 		}
-		 const reduceCoodinates = (directions) => {
-			return directions.reduce( (carry, route, cnt) => {
-				const decoded = decode(route.geometry).map(function(c) {
-					 return c.reverse()
-				})
-				return [ ...carry, ...decoded ] 
-			}, [])
-		}    
 		if(this.mapGL.getSource("route")) {      
 			this.mapGL.removeLayer("route")      
 			this.mapGL.removeSource("route")                  
@@ -103,7 +95,12 @@ class Map extends Component {
 					"properties": {},
 					"geometry": {
 						"type": "LineString",
-						"coordinates": reduceCoodinates(directions.routes)
+						"coordinates": directions.routes.reduce( (carry, route, cnt) => {
+							const decoded = decode(route.geometry).map(function(c) {
+								 return c.reverse()
+							})
+							return [ ...carry, ...decoded ] 
+						}, [])
 					}
 				}
 			},
@@ -119,43 +116,47 @@ class Map extends Component {
 		})
 	}
 
-	componentWillReceiveProps(nextProps) {   
+	setMarkers( closestLocations, userLatLng) {
+		this.state.markers.forEach( marker => marker.remove())
+		let markers = closestLocations.map( child => {
+			return new Marker()
+			.setLngLat([child.lng, child.lat])
+			.addTo(this.mapGL)  
+		})          
+		if(markers.length) {      
+			let bounds =  new LngLatBounds(userLatLng, markers[0].getLngLat())      
+			var bounds = markers.reduce(function(bounds, coord, cnt) {
+						return bounds.extend(coord.getLngLat())
+				},bounds)
+			this.mapGL.fitBounds(bounds, {padding: {left: 500, bottom: 40, right:40, top:40}} )      
+			
+			this.setState({ markers, bounds })
+		}
+	}
 
-		/* TODO: 
-		*  clean this method up more and break 
-		*  map activity into smaller functions. 
-		*  Compare props for change to 
-		*  improve performance
-		*/       
+
+	componentWillReceiveProps(nextProps) {   
 		if(this.state.mapHasLoaded) {
-			if(nextProps.directions) {
+
+			if(nextProps.directions && 
+					nextProps.directions != this.props.directions) {
 				this.drawDirectionPolyline(nextProps.directions)
 			}
-			this.setCircleIndicatorOnMap(nextProps.userLatLng)                  
-			this.state.markers.forEach( marker => marker.remove())
-			if (nextProps.closestLocations.length) {
-				let markers = nextProps.closestLocations.map( child => {
-					return new Marker()
-					.setLngLat([child.lng, child.lat])
-					.addTo(this.mapGL)  
-				})          
-				this.setState({markers: markers})
-				if(markers.length) {      
-					let bounds =  new LngLatBounds(nextProps.userLatLng, markers[0].getLngLat())      
-					var bounds = markers.reduce(function(bounds, coord, cnt) {
-								return bounds.extend(coord.getLngLat())
-						},bounds)
-					this.mapGL.fitBounds(bounds, {padding: {left: 500, bottom: 40, right:40, top:40}} )      
-				}
+
+			if(nextProps.userLatLng != this.props.userLatLng) {
+				this.setCircleIndicatorOnMap(nextProps.userLatLng)                  				
+			}			
+
+			if ( nextProps.closestLocations && 
+					nextProps.closestLocations.length && 
+						nextProps.closestLocations != this.props.closestLocations) {
+				this.setMarkers(nextProps.closestLocations, nextProps.userLatLng )											
 			}
 		}
 	}
 
 	render() {
-		return (
-			<div ref={ el => this.mapEl = el} id="map" className="map">        
-			</div>
-		)
+		return <div ref={ el => this.mapEl = el} id="map" className="map" />
 	}
 }
 

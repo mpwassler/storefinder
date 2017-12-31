@@ -1,11 +1,11 @@
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import './index.css'
+import App from './App'
+import registerServiceWorker from './registerServiceWorker'
 import reducer from './Reducers'
 import { getLocations } from './Actions'
 
@@ -23,4 +23,4 @@ ReactDOM.render(
    	document.getElementById('root')
 )
 
-registerServiceWorker();
+registerServiceWorker()
