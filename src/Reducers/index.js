@@ -9,7 +9,7 @@ const initState = {
 	closestLocations: [],
 	markers: [],
 	directions: [],
-	token: 'pk.eyJ1IjoibWl0Y2hlbCIsImEiOiJjamJreXhjcHk0Z25kMzNtcmxqbzg4aXljIn0.7Nj9EE6iR3oWGe69UFwfNQ'
+	token: 'token'
 }
 
 export default ( state = initState, action ) => {
